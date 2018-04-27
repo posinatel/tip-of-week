@@ -8,6 +8,7 @@ An awesome tip for you every friday!
 - [Object Literal as Switch](https://github.com/edysegura/js-tips/blob/master/object-literal-as-switch/index.js)
 - [Tagged Literal](https://github.com/edysegura/js-tips/blob/master/tagged-literal/index.js)
 - [FileReader API](https://github.com/edysegura/js-FileReader)
+- [WebWorker API](https://github.com/edysegura/js-webworker-basics)
 
 ## CSS
 
