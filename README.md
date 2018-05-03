@@ -9,6 +9,8 @@ An awesome tip for you every friday!
 - [Tagged Literal](https://github.com/edysegura/js-tips/blob/master/tagged-literal/index.js)
 - [FileReader API](https://github.com/edysegura/js-FileReader)
 - [WebWorker API](https://github.com/edysegura/js-webworker-basics)
+- [Destructuring](https://github.com/inatel/tip-of-week/blob/master/tips/js/destructuring/destructuring.js)
+- [Proxy](https://github.com/inatel/tip-of-week/blob/master/tips/js/proxy/proxy.js)
 
 ## CSS
 
