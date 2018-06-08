@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="map" style="width: 1000px; height: 800px;"></div>
+    <p>
+      <button onclick="addMarker()">Add Marker</button>
+    </p>
+    <p>
+      <button onclick="removeMarker()">Remove Marker</butto>
+    </p>
+    <script>
+
+      var latLng;
+      var map;
+      var infowindow;
+      var marker;
+
+      function addMarker() {
+        marker.setMap(map);
+      }
+
+      function removeMarker() {
+        marker.setMap(null);
+      }
+
+      function clickOnButton() {
+        alert('I am on INATEL');
+      }
+
+      function initMap() {
+        latLng = new google.maps.LatLng(-22.256981, -45.696768);
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: latLng,
+          zoom: 17,
+          mapTypeId : google.maps.MapTypeId.ROADMAP
+        });
+
+        infowindow = new google.maps.InfoWindow({
+          content: `
+            <p>This is a info window !!</p>
+            <button onclick="clickOnButton()">With event</button>
+          `
+        });
+
+        marker = new google.maps.Marker({
+          position: latLng,
+          title: 'INATEL GENTE!'
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+        marker.setMap(map);
+      }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc2cwvSR8poHKhUdbVxQNSJJpEC5yYex4&callback=initMap" async defer></script>
+  </body>
+</html>

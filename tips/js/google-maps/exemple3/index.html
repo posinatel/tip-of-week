@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="map" style="width: 1000px; height: 800px;"></div>
+    <script>
+
+      let latsLngs = [];
+      let map;
+      let infowindows = [];
+      let markers = [];
+
+      const clickOnButton = () => {
+        alert('I am on INATEL');
+      }
+
+      const setRoute = () => {
+        const directionsDisplay = new google.maps.DirectionsRenderer({
+          map: map
+        });
+
+        // Set destination, origin and travel mode.
+        const request = {
+          destination: latsLngs[1],
+          origin: latsLngs[0],
+          travelMode: 'WALKING'
+        };
+
+        // Pass the directions request to the directions service.
+        const directionsService = new google.maps.DirectionsService();
+        directionsService.route(request, (response, status) => {
+          if (status === 'OK') {
+            // Display the route on the map.
+            directionsDisplay.setDirections(response);
+          }
+        });
+      }
+
+      function initMap() {
+        latsLngs.push(new google.maps.LatLng(-22.261115, -45.711757));
+        latsLngs.push(new google.maps.LatLng(-22.256981, -45.696768));
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: latsLngs[0],
+          zoom: 15,
+          mapTypeId : google.maps.MapTypeId.ROADMAP
+        });
+
+        var content1 = `
+            <p>My Home</p>
+            <button onclick="setRoute()">Generate Route until INATEL</button>
+          `;
+        var content2 = `
+            <p>Inatel</p>
+          `;
+
+        latsLngs.forEach((latLng, index) => {
+          markers.push(new google.maps.Marker({
+            position: latLng,
+            title: index === 0 ? 'HOME' : 'INATEL'
+          }));
+
+          const info = new google.maps.InfoWindow({
+            content: index === 0 ? content1 : content2
+          });
+
+          infowindows.push(info);
+
+          markers[index].addListener('click', () => {
+            infowindows[index].open(map, markers[index]);
+          });
+
+          markers[index].setMap(map);
+        });
+      }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc2cwvSR8poHKhUdbVxQNSJJpEC5yYex4&callback=initMap" async defer></script>
+  </body>
+</html>
